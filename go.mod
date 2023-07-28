@@ -1,4 +1,4 @@
-module chat-chat-go
+module github/lzzzzl/chat-chat-go
 
 go 1.19
 
