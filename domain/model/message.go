@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// Message represents a chat message.
 type Message struct {
 	ID        string
 	SenderID  string
@@ -13,6 +14,8 @@ type Message struct {
 	CreatedAt time.Time
 }
 
+// NewMessage createds a new Message
+// This function will also validate the input.
 func NewMessage(id string, senderID string, roomID string, content string, createdAt time.Time) (*Message, error) {
 	if id == "" {
 		return nil, errors.New("id must not be empty")
