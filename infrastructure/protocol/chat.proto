@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package protocol;
+
+option go_package = "github.com/lzzzzl/proto";
+
+// The request message from client to server.
+message ChatRequest {
+    string user = 1;
+    string message = 2;
+}
+
+// The response message from server to client.
+message ChatResponse {
+    string user = 1;
+    string message = 2;
+}
+
+// The service definition
+service ChatService {
+    // Sends a message to the server.
+    rpc SendMessage(ChatRequest) returns (ChatResponse);
+}
