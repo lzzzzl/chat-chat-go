@@ -8,17 +8,14 @@ import (
 
 // User represents a user in the chat application.
 type User struct {
-	ID           string
+	ID           int
 	Username     string
 	PasswordHash string
 }
 
 // NewUser creates a new User
 // This function will also validate the input and hash the password.
-func NewUser(id string, username string, password string) (*User, error) {
-	if id == "" {
-		return nil, errors.New("id must not be empty")
-	}
+func NewUser(username string, password string) (*User, error) {
 	if username == "" {
 		return nil, errors.New("username must not be empty")
 	}
@@ -32,7 +29,6 @@ func NewUser(id string, username string, password string) (*User, error) {
 	}
 
 	return &User{
-		ID:           id,
 		Username:     username,
 		PasswordHash: passwordHash,
 	}, nil

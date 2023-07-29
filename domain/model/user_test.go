@@ -6,18 +6,14 @@ import (
 )
 
 func TestNewUser(t *testing.T) {
-	id := "1"
 	username := "test"
 	password := "password"
 
-	user, err := NewUser(id, username, password)
+	user, err := NewUser(username, password)
 	fmt.Printf("password, %s", user.PasswordHash)
 
 	if err != nil {
 		t.Fatalf("Expected no error, got %v", err)
-	}
-	if user.ID != id {
-		t.Errorf("Expected ID to be %s, got %s", id, user.ID)
 	}
 	if user.Username != username {
 		t.Errorf("Expected Username to be %s, got %s", username, user.Username)
@@ -28,10 +24,9 @@ func TestNewUser(t *testing.T) {
 }
 
 func TestCheckPassword(t *testing.T) {
-	id := "1"
 	username := "test"
 	password := "password"
-	user, _ := NewUser(id, username, password)
+	user, _ := NewUser(username, password)
 
 	if user.CheckPassword(password) != true {
 		t.Errorf("Expected password to match")
