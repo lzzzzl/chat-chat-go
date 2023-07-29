@@ -3,6 +3,8 @@ module github/lzzzzl/chat-chat-go
 go 1.19
 
 require (
+	github.com/BurntSushi/toml v1.3.2
+	github.com/lib/pq v1.10.9
 	golang.org/x/crypto v0.11.0
 	google.golang.org/grpc v1.57.0
 	google.golang.org/protobuf v1.31.0
