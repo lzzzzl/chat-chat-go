@@ -7,23 +7,20 @@ import (
 
 // Message represents a chat message.
 type Message struct {
-	ID        string
-	SenderID  string
-	RoomID    string
+	ID        int
+	UserID    int
+	RoomID    int
 	Content   string
 	CreatedAt time.Time
 }
 
 // NewMessage createds a new Message
 // This function will also validate the input.
-func NewMessage(id string, senderID string, roomID string, content string, createdAt time.Time) (*Message, error) {
-	if id == "" {
-		return nil, errors.New("id must not be empty")
+func NewMessage(userID int, roomID int, content string, createdAt time.Time) (*Message, error) {
+	if userID <= 0 {
+		return nil, errors.New("userID must not be empty")
 	}
-	if senderID == "" {
-		return nil, errors.New("senderID must not be empty")
-	}
-	if roomID == "" {
+	if roomID <= 0 {
 		return nil, errors.New("roomID must not be empty")
 	}
 	if content == "" {
@@ -31,8 +28,7 @@ func NewMessage(id string, senderID string, roomID string, content string, creat
 	}
 
 	return &Message{
-		ID:        id,
-		SenderID:  senderID,
+		UserID:    userID,
 		RoomID:    roomID,
 		Content:   content,
 		CreatedAt: createdAt,

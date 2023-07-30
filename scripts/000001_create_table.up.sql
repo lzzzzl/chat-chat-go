@@ -14,5 +14,5 @@ CREATE TABLE IF NOT EXISTS messages (
     user_id INTEGER REFERENCES users(id),
     room_id INTEGER REFERENCES rooms(id),
     content TEXT NOT NULL,
-    timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp
+    created_at TIMESTAMP NOT NULL DEFAULT current_timestamp
 )
