@@ -3,6 +3,8 @@ package model
 import (
 	"fmt"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestNewUser(t *testing.T) {
@@ -18,7 +20,7 @@ func TestNewUser(t *testing.T) {
 	if user.Username != username {
 		t.Errorf("Expected Username to be %s, got %s", username, user.Username)
 	}
-	if user.CheckPassword(password) != true {
+	if err := user.CheckPassword(password); err != nil {
 		t.Errorf("Expected password to match")
 	}
 }
@@ -26,12 +28,13 @@ func TestNewUser(t *testing.T) {
 func TestCheckPassword(t *testing.T) {
 	username := "test"
 	password := "password"
-	user, _ := NewUser(username, password)
+	user, err := NewUser(username, password)
+	assert.NoError(t, err)
 
-	if user.CheckPassword(password) != true {
+	if err := user.CheckPassword(password); err != nil {
 		t.Errorf("Expected password to match")
 	}
-	if user.CheckPassword("wrongpassword") != false {
+	if err := user.CheckPassword("wrongpassword"); err == nil {
 		t.Errorf("Expected password to not match")
 	}
 }
