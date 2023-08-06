@@ -27,6 +27,21 @@ func (h *UserHandler) Register(ctx context.Context, req *pb.RegisterRequest) (*p
 	return &pb.RegisterResponse{
 		Username: user.Username,
 		Success:  true,
-		Message:  "",
+		Message:  "Success",
+	}, nil
+}
+
+// Login ...
+func (h *UserHandler) Login(ctx context.Context, req *pb.LoginRequest) (*pb.LoginResponse, error) {
+	user, err := h.userService.Login(req.Username, req.Password)
+	if err != nil {
+		return nil, err
+	}
+
+	// Convert user to protobuf user
+	return &pb.LoginResponse{
+		Username: user.Username,
+		Success:  true,
+		Message:  "Success",
 	}, nil
 }
